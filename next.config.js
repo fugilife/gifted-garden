@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // 移除 output: 'export' 以支援動態路由
 }
 
 module.exports = nextConfig
