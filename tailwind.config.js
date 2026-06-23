@@ -109,6 +109,19 @@ module.exports = {
           '0%': { transform: 'translateX(-100%)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
         },
+        leafSway: {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '50%': { transform: 'rotate(2deg)' },
+        },
+        branchSway: {
+          '0%, 100%': { transform: 'translateX(0) rotate(0deg)' },
+          '25%': { transform: 'translateX(1px) rotate(0.5deg)' },
+          '75%': { transform: 'translateX(-1px) rotate(-0.5deg)' },
+        },
+        fruitBob: {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-2px) rotate(1deg)' },
+        },
       },
       animation: {
         plantFloat: 'plantFloat 3s ease-in-out infinite',
@@ -129,6 +142,9 @@ module.exports = {
         celebrationParticle: 'celebrationParticle 2s ease-out forwards',
         slideDown: 'slideDown 300ms ease-out',
         slideIn: 'slideIn 600ms ease-out',
+        leafSway: 'leafSway 4s ease-in-out infinite',
+        branchSway: 'branchSway 6s ease-in-out infinite',
+        fruitBob: 'fruitBob 3s ease-in-out infinite',
       },
     },
   },

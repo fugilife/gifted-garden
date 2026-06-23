@@ -16,7 +16,7 @@ export default function GroundAnimals({ child, totalMoney }: GroundAnimalsProps)
   const animals = Array.from({ length: count }, (_, i) => i);
 
   return (
-    <div className="absolute bottom-0 left-0 w-full h-24 pointer-events-none">
+    <div className="absolute bottom-12 left-0 w-full h-20 pointer-events-none">
       {animals.map((index) => (
         <Animal key={index} child={child} index={index} />
       ))}
@@ -59,7 +59,7 @@ function Animal({ child, index }: { child: ChildName; index: number }) {
       className="absolute transition-all duration-1000 ease-in-out animate-slideIn"
       style={{
         left: `calc(50% + ${basePosition + position}px)`,
-        bottom: '4px',
+        bottom: '0px',
         animationDelay: `${index * 200}ms`,
       }}
     >

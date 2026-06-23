@@ -122,15 +122,19 @@ function AppleStage3() {
       <rect x="135" y="180" width="10" height="100" fill="#8B6343" rx="5" />
 
       {/* 圓形樹冠 */}
-      <ellipse cx="140" cy="120" rx="70" ry="65" fill="#4A7C59" opacity="0.9" />
-      <ellipse cx="120" cy="140" rx="50" ry="48" fill="#5A8C69" opacity="0.8" />
-      <ellipse cx="160" cy="135" rx="55" ry="50" fill="#5A8C69" opacity="0.8" />
-      <ellipse cx="140" cy="105" rx="45" ry="42" fill="#6AA279" opacity="0.7" />
+      <g className="animate-leafSway" style={{ transformOrigin: '140px 120px' }}>
+        <ellipse cx="140" cy="120" rx="70" ry="65" fill="#4A7C59" opacity="0.9" />
+        <ellipse cx="120" cy="140" rx="50" ry="48" fill="#5A8C69" opacity="0.8" />
+        <ellipse cx="160" cy="135" rx="55" ry="50" fill="#5A8C69" opacity="0.8" />
+        <ellipse cx="140" cy="105" rx="45" ry="42" fill="#6AA279" opacity="0.7" />
+      </g>
 
       {/* 葉子細節 */}
-      <circle cx="110" cy="130" r="15" fill="#4A7C59" opacity="0.6" />
-      <circle cx="170" cy="125" r="18" fill="#4A7C59" opacity="0.6" />
-      <circle cx="140" cy="95" r="20" fill="#5A8C69" opacity="0.7" />
+      <g className="animate-leafSway" style={{ transformOrigin: '140px 120px', animationDelay: '0.5s' }}>
+        <circle cx="110" cy="130" r="15" fill="#4A7C59" opacity="0.6" />
+        <circle cx="170" cy="125" r="18" fill="#4A7C59" opacity="0.6" />
+        <circle cx="140" cy="95" r="20" fill="#5A8C69" opacity="0.7" />
+      </g>
     </svg>
   );
 }
@@ -192,22 +196,33 @@ function AppleStage5() {
       <rect x="133" y="150" width="14" height="130" fill="#8B6343" rx="7" />
 
       {/* 樹枝 */}
-      <path d="M 142 180 Q 95 170 80 185" stroke="#7A5C42" strokeWidth="9" fill="none" strokeLinecap="round" />
-      <path d="M 142 180 Q 185 170 200 185" stroke="#7A5C42" strokeWidth="9" fill="none" strokeLinecap="round" />
-      <path d="M 140 200 Q 110 195 95 205" stroke="#7A5C42" strokeWidth="7" fill="none" strokeLinecap="round" />
+      <g className="animate-branchSway" style={{ transformOrigin: '142px 180px' }}>
+        <path d="M 142 180 Q 95 170 80 185" stroke="#7A5C42" strokeWidth="9" fill="none" strokeLinecap="round" />
+        <path d="M 142 180 Q 185 170 200 185" stroke="#7A5C42" strokeWidth="9" fill="none" strokeLinecap="round" />
+        <path d="M 140 200 Q 110 195 95 205" stroke="#7A5C42" strokeWidth="7" fill="none" strokeLinecap="round" />
+      </g>
 
       {/* 豐盛樹冠 */}
-      <ellipse cx="140" cy="105" rx="85" ry="75" fill="#4A7C59" opacity="0.9" />
-      <ellipse cx="105" cy="125" rx="65" ry="60" fill="#5A8C69" opacity="0.85" />
-      <ellipse cx="175" cy="120" rx="70" ry="62" fill="#5A8C69" opacity="0.85" />
-      <ellipse cx="140" cy="85" rx="55" ry="50" fill="#6AA279" opacity="0.75" />
+      <g className="animate-leafSway" style={{ transformOrigin: '140px 105px' }}>
+        <ellipse cx="140" cy="105" rx="85" ry="75" fill="#4A7C59" opacity="0.9" />
+        <ellipse cx="105" cy="125" rx="65" ry="60" fill="#5A8C69" opacity="0.85" />
+        <ellipse cx="175" cy="120" rx="70" ry="62" fill="#5A8C69" opacity="0.85" />
+        <ellipse cx="140" cy="85" rx="55" ry="50" fill="#6AA279" opacity="0.75" />
+      </g>
 
       {/* 8 顆紅蘋果 - 分散排列，避開鳥巢區域 */}
       {[
         [85, 100], [160, 95], [140, 75], [100, 145], [175, 140],
         [75, 130], [150, 150], [115, 85]
       ].map(([x, y], i) => (
-        <g key={i}>
+        <g
+          key={i}
+          className="animate-fruitBob"
+          style={{
+            transformOrigin: `${x}px ${y}px`,
+            animationDelay: `${i * 0.3}s`
+          }}
+        >
           {/* 蘋果主體 */}
           <ellipse cx={x} cy={y} rx="11" ry="12" fill="#D94F3D" />
           <ellipse cx={x} cy={y} rx="9" ry="10" fill="#E85D4A" />
@@ -363,22 +378,33 @@ function OrangeStage5() {
       <rect x="133" y="150" width="14" height="130" fill="#8B6343" rx="7" />
 
       {/* 樹枝 */}
-      <path d="M 142 175 Q 95 165 80 180" stroke="#7A5C42" strokeWidth="9" fill="none" strokeLinecap="round" />
-      <path d="M 142 175 Q 185 165 200 180" stroke="#7A5C42" strokeWidth="9" fill="none" strokeLinecap="round" />
-      <path d="M 140 195 Q 110 190 95 200" stroke="#7A5C42" strokeWidth="7" fill="none" strokeLinecap="round" />
+      <g className="animate-branchSway" style={{ transformOrigin: '142px 175px' }}>
+        <path d="M 142 175 Q 95 165 80 180" stroke="#7A5C42" strokeWidth="9" fill="none" strokeLinecap="round" />
+        <path d="M 142 175 Q 185 165 200 180" stroke="#7A5C42" strokeWidth="9" fill="none" strokeLinecap="round" />
+        <path d="M 140 195 Q 110 190 95 200" stroke="#7A5C42" strokeWidth="7" fill="none" strokeLinecap="round" />
+      </g>
 
       {/* 豐盛錐形樹冠 */}
-      <ellipse cx="140" cy="110" rx="82" ry="72" fill="#3A6B49" opacity="0.9" />
-      <ellipse cx="105" cy="128" rx="66" ry="58" fill="#4A7C59" opacity="0.87" />
-      <ellipse cx="175" cy="123" rx="68" ry="60" fill="#4A7C59" opacity="0.87" />
-      <ellipse cx="140" cy="88" rx="56" ry="50" fill="#5A8C69" opacity="0.8" />
+      <g className="animate-leafSway" style={{ transformOrigin: '140px 110px' }}>
+        <ellipse cx="140" cy="110" rx="82" ry="72" fill="#3A6B49" opacity="0.9" />
+        <ellipse cx="105" cy="128" rx="66" ry="58" fill="#4A7C59" opacity="0.87" />
+        <ellipse cx="175" cy="123" rx="68" ry="60" fill="#4A7C59" opacity="0.87" />
+        <ellipse cx="140" cy="88" rx="56" ry="50" fill="#5A8C69" opacity="0.8" />
+      </g>
 
       {/* 8 顆橙黃橘子 - 分散排列 */}
       {[
         [93, 103], [177, 98], [140, 83], [108, 138], [188, 133],
         [83, 123], [165, 143], [120, 93]
       ].map(([x, y], i) => (
-        <g key={i}>
+        <g
+          key={i}
+          className="animate-fruitBob"
+          style={{
+            transformOrigin: `${x}px ${y}px`,
+            animationDelay: `${i * 0.4}s`
+          }}
+        >
           {/* 橘子主體 */}
           <circle cx={x} cy={y} r="11" fill="#F07B2A" />
           <circle cx={x} cy={y} r="9.5" fill="#FF8C3A" />
