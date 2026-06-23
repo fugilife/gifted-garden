@@ -60,10 +60,10 @@ export default function NestScene({ child, totalMoney, isNewlyUnlocked }: NestSc
       };
 
   return (
-    <div className={`absolute inset-0 pointer-events-none ${isNewlyUnlocked ? 'animate-nestDrop' : ''}`}>
-      <svg viewBox="0 0 280 320" className="w-full h-auto max-w-xs mx-auto">
+    <div className={`absolute inset-0 pointer-events-none z-20 ${isNewlyUnlocked ? 'animate-nestDrop' : ''}`}>
+      <svg viewBox="0 0 280 320" className="w-full h-auto max-w-xs mx-auto" style={{ maxWidth: '320px' }}>
         {/* 鳥巢 */}
-        <g transform={child === 'gisele' ? 'translate(180, 115)' : 'translate(90, 100)'}>
+        <g transform={child === 'gisele' ? 'translate(190, 105)' : 'translate(80, 95)'}>
           <ellipse cx="0" cy="0" rx="30" ry="18" fill="#8B6343" opacity="0.9" />
           <ellipse cx="0" cy="-2" rx="28" ry="16" fill="#E8C870" />
           {/* 編織紋路 */}
@@ -93,7 +93,7 @@ export default function NestScene({ child, totalMoney, isNewlyUnlocked }: NestSc
         </g>
 
         {/* 成鳥 A（餵食鳥）- 固定在巢旁 */}
-        <g transform={child === 'gisele' ? 'translate(155, 110)' : 'translate(120, 95)'}>
+        <g transform={child === 'gisele' ? 'translate(165, 100)' : 'translate(105, 90)'}>
           <Bird
             colors={birdColors.birdA}
             animation="feed"
@@ -104,20 +104,20 @@ export default function NestScene({ child, totalMoney, isNewlyUnlocked }: NestSc
         {/* 成鳥 B（守護鳥）- 巡邏飛行 */}
         {!birdBStopped && (
           <g className="animate-birdFly">
-            <g transform="translate(200, 140)">
+            <g transform="translate(80, 150)">
               <Bird colors={birdColors.birdB} animation="fly" />
             </g>
           </g>
         )}
         {birdBStopped && (
-          <g transform="translate(220, 140)">
+          <g transform="translate(200, 150)">
             <Bird colors={birdColors.birdB} animation="idle" />
           </g>
         )}
 
         {/* 成鳥 C（歌唱鳥）- 樹頂 */}
         {!birdCFlownAway && (
-          <g transform={child === 'gisele' ? 'translate(110, 70)' : 'translate(170, 65)'}>
+          <g transform={child === 'gisele' ? 'translate(100, 60)' : 'translate(180, 55)'}>
             <Bird colors={birdColors.birdC} animation="sing" />
             {/* 音符 */}
             {[...Array(2)].map((_, i) => (
