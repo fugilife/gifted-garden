@@ -51,7 +51,7 @@ export default function NestScene({ child, totalMoney, isNewlyUnlocked }: NestSc
     ? {
         birdA: { body: '#D4693A', wing: '#A84F2A', belly: '#F5E8C0' },
         birdB: { body: '#4A7FC4', wing: '#2E5C99', belly: '#E8F4FF' },
-        birdC: { body: '#7AB848', wing: '#5A8C32', belly: '#F0FFE0' },
+        birdC: { body: '#F0D040', wing: '#D4B030', belly: '#FFFCE8' }, // 改成明亮黃色
       }
     : {
         birdA: { body: '#E8A030', wing: '#C07820', belly: '#FFF5D0' },

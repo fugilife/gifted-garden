@@ -16,7 +16,7 @@ export default function GroundAnimals({ child, totalMoney }: GroundAnimalsProps)
   const animals = Array.from({ length: count }, (_, i) => i);
 
   return (
-    <div className="absolute bottom-16 left-0 w-full h-32 pointer-events-none">
+    <div className="absolute bottom-0 left-0 w-full h-24 pointer-events-none">
       {animals.map((index) => (
         <Animal key={index} child={child} index={index} />
       ))}
@@ -28,6 +28,9 @@ function Animal({ child, index }: { child: ChildName; index: number }) {
   const [action, setAction] = useState<AnimalAction>('idle');
   const [position, setPosition] = useState(0);
   const seed = getAnimalAnimationSeed(index);
+
+  // 每隻動物有不同的初始位置和外觀變化
+  const variant = index % 3; // 0, 1, 2 三種變化
 
   useEffect(() => {
     const baseInterval = 8000 + seed * 1000;
@@ -49,38 +52,48 @@ function Animal({ child, index }: { child: ChildName; index: number }) {
     return () => clearInterval(interval);
   }, [seed]);
 
-  const basePosition = -80 + index * 40;
+  const basePosition = -100 + index * 50;
 
   return (
     <div
       className="absolute transition-all duration-1000 ease-in-out animate-slideIn"
       style={{
         left: `calc(50% + ${basePosition + position}px)`,
-        bottom: '0',
+        bottom: '4px',
         animationDelay: `${index * 200}ms`,
       }}
     >
       {child === 'gisele' ? (
-        <Meerkat action={action} />
+        <Meerkat action={action} variant={variant} />
       ) : (
-        <Rabbit action={action} />
+        <Rabbit action={action} variant={variant} />
       )}
     </div>
   );
 }
 
-function Meerkat({ action }: { action: AnimalAction }) {
+function Meerkat({ action, variant }: { action: AnimalAction; variant: number }) {
+  // 根據 variant 改變顏色深淺
+  const colorShift = variant * 15;
+  const bodyColor = `hsl(${35 + colorShift}, 60%, 62%)`;
+  const bellyColor = `hsl(${40 + colorShift}, 50%, 85%)`;
+
+  // 根據 variant 改變姿勢
+  const isLookingLeft = variant === 1;
+  const isSquatting = action === 'action' || variant === 2;
+
   return (
     <svg
       viewBox="0 0 40 60"
       className={`w-12 h-auto ${
         action === 'idle' ? 'animate-lookAround' : action === 'action' ? 'animate-dig' : ''
       }`}
+      style={{ transform: isLookingLeft ? 'scaleX(-1)' : 'none' }}
     >
       {/* 狐獴身體（直立） */}
-      <ellipse cx="20" cy="35" rx="8" ry="15" fill="#D4A96A" />
+      <ellipse cx="20" cy={isSquatting ? "38" : "35"} rx="8" ry={isSquatting ? "12" : "15"} fill={bodyColor} />
       {/* 腹部 */}
-      <ellipse cx="20" cy="38" rx="5" ry="10" fill="#F5E0C0" />
+      <ellipse cx="20" cy={isSquatting ? "40" : "38"} rx="5" ry={isSquatting ? "8" : "10"} fill={bellyColor} />
       {/* 頭 */}
       <ellipse cx="20" cy="18" rx="7" ry="8" fill="#D4A96A" />
       {/* 耳朵 */}
@@ -114,8 +127,18 @@ function Meerkat({ action }: { action: AnimalAction }) {
   );
 }
 
-function Rabbit({ action }: { action: AnimalAction }) {
+function Rabbit({ action, variant }: { action: AnimalAction; variant: number }) {
   const [earUp, setEarUp] = useState(false);
+
+  // 根據 variant 改變顏色
+  const colors = [
+    { body: '#F5F0E8', ear: '#FFB6C1', eye: '#FF6B9D' }, // 原始白色
+    { body: '#E8E0D8', ear: '#FFA8B8', eye: '#FF5B8D' }, // 淺灰
+    { body: '#FFF8F0', ear: '#FFC0CB', eye: '#FF7BA0' }, // 淡粉
+  ];
+  const color = colors[variant];
+
+  const isLookingRight = variant === 1;
 
   useEffect(() => {
     if (action === 'idle') {
@@ -132,11 +155,12 @@ function Rabbit({ action }: { action: AnimalAction }) {
     <svg
       viewBox="0 0 40 50"
       className={`w-12 h-auto ${action === 'move' ? 'animate-hop' : action === 'idle' ? '' : ''}`}
+      style={{ transform: isLookingRight ? 'scaleX(-1)' : 'none' }}
     >
       {/* 兔子身體 */}
-      <ellipse cx="20" cy="32" rx="10" ry="12" fill="#F5F0E8" />
+      <ellipse cx="20" cy="32" rx="10" ry="12" fill={color.body} />
       {/* 頭 */}
-      <circle cx="20" cy="18" r="8" fill="#F5F0E8" />
+      <circle cx="20" cy="18" r="8" fill={color.body} />
       {/* 長耳朵 */}
       <ellipse
         cx="16"
