@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-sky: #E8F4F0;
+  --color-soil: #8B5E3C;
+  --color-leaf: #4A7C59;
+  --color-sun: #F5C842;
+  --color-orange: #F07B2A;
+  --color-apple: #D94F3D;
+  --color-cream: #FDF8F0;
+  --color-bark: #5C3D1E;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--color-sky);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
