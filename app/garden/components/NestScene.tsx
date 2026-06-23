@@ -60,8 +60,8 @@ export default function NestScene({ child, totalMoney, isNewlyUnlocked }: NestSc
       };
 
   return (
-    <div className={`absolute top-0 left-0 w-full h-full ${isNewlyUnlocked ? 'animate-nestDrop' : ''}`}>
-      <svg viewBox="0 0 280 320" className="w-full h-auto max-w-xs mx-auto absolute top-0 left-1/2 -translate-x-1/2">
+    <div className={`absolute inset-0 pointer-events-none ${isNewlyUnlocked ? 'animate-nestDrop' : ''}`}>
+      <svg viewBox="0 0 280 320" className="w-full h-auto max-w-xs mx-auto">
         {/* 鳥巢 */}
         <g transform={child === 'gisele' ? 'translate(180, 115)' : 'translate(90, 100)'}>
           <ellipse cx="0" cy="0" rx="30" ry="18" fill="#8B6343" opacity="0.9" />
